@@ -63,3 +63,10 @@ struct wavFile
   int subChunk2Size;
 };
 */
+
+
+Controller controller;
+Console console;
+controller.setUI(console);
+controller.run();
+

@@ -7,6 +7,8 @@ class Controller
 {
     private:
         std::string input;
+	Console console;
+	Model model;
 
     public:
         Controller(std::string n_input)
@@ -15,6 +17,15 @@ class Controller
         }
         void readFile(std::string input);
         ~Controller(){}
+	setUI(Console s_console) {
+		console = s_console;
+	}
+	run(){
+		model.filename = console.requestFile();
+		model.openFile();
+		console.printAttributes(model);
+		console.printProcessMenu(model.getProcesses);
+	}
 };
 
 #endif //CONTROL_H

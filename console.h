@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
@@ -7,8 +8,9 @@ private:
 	Model model;
 
 public:
-	void fileRequest();
+	std::string requestFile();
 	void printAttributes(Model model);
+
 };
 
 
