@@ -1,15 +1,19 @@
 #include <iostream>
 #include "controller.h"
+#include "console.h"
+#include "model.h"
 
 int main()
 {
-    std::string file;
-    Controller controller(file);
+	Controller controller;
+	Console console;
+	controller.setUI(console);
+	controller.run();
 
-    controller.readFile(file);
 
-    return 0;
+	return 0;
 }
+
 /*
 #include<string>
 
@@ -65,8 +69,5 @@ struct wavFile
 */
 
 
-Controller controller;
-Console console;
-controller.setUI(console);
-controller.run();
+
 
