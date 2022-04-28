@@ -10,7 +10,7 @@ private:
 
 public:
 	std::string requestFile();
-	void printAttributes(Model model);
+	void printAttributes(FileAttributes attributes);
 	void printProcessMenu();
 
 };

@@ -19,8 +19,7 @@ class Controller
 	}
 	void run(){
 		model.setFile(console.requestFile());
-		model.openFile();
-		console.printAttributes(model);
+		console.printAttributes(model.openFile());
 		console.printProcessMenu();
 	}
 };
