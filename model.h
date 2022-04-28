@@ -12,6 +12,8 @@ private:
 	WavReader wavreader;
 	WavModel wavmodel;
 	std::string filename;
+	
+	
 
 public:
 	void openFile() {

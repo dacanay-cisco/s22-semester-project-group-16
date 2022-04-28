@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "model.h"
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
