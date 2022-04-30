@@ -6,7 +6,7 @@
 
 class Console {
 private:
-	Model model;
+	
 
 public:
 	std::string requestFile();

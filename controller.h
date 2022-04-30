@@ -9,18 +9,18 @@ class Controller
 {
     private:
         std::string input;
-	Console console;
+	Console* console;
 	Model model;
 
     public:
         ~Controller(){}
-	void setUI(Console s_console) {
+	void setUI(Console* s_console) {
 		console = s_console;
 	}
 	void run(){
-		model.setFile(console.requestFile());
-		console.printAttributes(model.openFile());
-		console.printProcessMenu();
+		model.setFile(console->requestFile());
+		console->printAttributes(model.openFile());
+		//console.printProcessMenu(processor.getProcesslist());
 	}
 };
 

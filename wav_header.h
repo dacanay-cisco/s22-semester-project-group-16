@@ -13,7 +13,7 @@ struct wav_header {
 	int sample_rate;
 	int byte_rate;
 	short sample_alignment;
-	short bits_per_sample;
+	short bits_per_sample; //bit depth
 
 	char data_header[4];
 	int data_bytes;

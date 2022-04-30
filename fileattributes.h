@@ -9,6 +9,7 @@ struct FileAttributes {
 	int bits_per_sample;
 	int num_channels;
 	int length_seconds;
+	int error_code = 0;
 
 };
 

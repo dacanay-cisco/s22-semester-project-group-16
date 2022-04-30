@@ -11,7 +11,6 @@ private:
 	WavReader wavreader;
 	std::string filename;
 	
-	
 
 public:
 	FileAttributes openFile() {

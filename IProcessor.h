@@ -7,4 +7,6 @@ class IProcessor
     public:
         IProcessor(){}
         ~IProcessor(){}
+	
+	void process(const input) = 0;
 };
