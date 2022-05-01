@@ -10,7 +10,6 @@ int main()
 	controller.setUI(&console);
 	controller.run();
 
-
 	return 0;
 }
 

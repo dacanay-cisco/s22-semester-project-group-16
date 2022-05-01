@@ -1,8 +1,8 @@
 #include "wavreader.h"
 #define MAX_16BIT 32768
 #define BIT16_OFFSET 0
-#define MAX_8BIT 256
-#define BIT8_OFFSET 0.5
+#define MAX_8BIT 128
+#define BIT8_OFFSET 1
 
 FileAttributes WavReader::readFile(const std::string &filename)
 {
@@ -21,22 +21,20 @@ FileAttributes WavReader::readFile(const std::string &filename)
 		else
 			attributes.error_code = 2; //bit depth not supported
 
-		std::cout <<"Max: " << *std::max_element(soundData.begin(), soundData.end()) << std::endl;
-		std::cout << "Min: " << *std::min_element(soundData.begin(), soundData.end()) << std::endl;
-
 		file.close();
-
+		attributes.error_code = 0;
 		attributes.filename = filename;
 		attributes.sample_rate = waveHeader.sample_rate;
 		attributes.bits_per_sample = waveHeader.bits_per_sample;
 		attributes.num_channels = waveHeader.num_channels;
-		attributes.length_seconds = 2; //placeholder
+		attributes.length_seconds = waveHeader.data_bytes / waveHeader.byte_rate;
 
-		return attributes;
 	}
-    else
-        attributes.error_code = 1; //file not found
-
+	else {
+		attributes.error_code = 1; //file not found
+	}
+	
+	return attributes;
 }
 
 template<typename T>
@@ -45,9 +43,9 @@ void WavReader::readData(T* buffer, std::ifstream* file, int max_bit, float offs
 	file->read((char*)buffer, waveHeader.data_bytes);
 
 	for (int i=0; i < waveHeader.data_bytes / waveHeader.sample_alignment; i++) {
-		soundData.push_back(((float)buffer[i] / max_bit - offset) / (1-offset));
+		soundData.push_back((float)buffer[i] / max_bit - offset);
 		//std::cout << soundData[i] << " ";
 	}
-	
+
 	delete[] buffer;
 }

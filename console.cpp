@@ -19,8 +19,7 @@ void Console::printAttributes(FileAttributes attributes) {
 			std::cout << "Channel: Stereo" << std::endl;
 		else
 			std::cout << "Channel: Unknown" << std::endl;
-		std::cout << "Length: " << attributes.length_seconds << std::endl;
-
+		std::cout << "Length: " << attributes.length_seconds << " seconds" << std::endl;
 	}
 	else if(attributes.error_code == 1) 
 		std::cout << "File not found" << std::endl;
