@@ -9,7 +9,7 @@ int main()
 	Console console;
 	controller.setUI(&console);
 	controller.run();
-
+	
 	return 0;
 }
 

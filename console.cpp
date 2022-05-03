@@ -27,5 +27,18 @@ void Console::printAttributes(FileAttributes attributes) {
 		std::cout << "Bit Depth of file is not supported" << std::endl;
 }
 
-void Console::printProcessMenu() {}
+int Console::printProcessMenu(std::vector<std::string> processList) {
+	std::cout << "Available Processes: " << std::endl;
+	int index = 1;
+	for(auto i: processList) {
+		std::cout << index << " " << i << std::endl;
+		index++;
+	}
+	int selection = 0;
+	std::cout << "Please enter a process number: ";
+	std::cin >> selection;
+
+	return selection;
+
+}
 

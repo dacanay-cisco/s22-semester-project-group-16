@@ -2,6 +2,7 @@
 #include <string>
 #include "model.h"
 #include "console.h"
+#include "processor.h"
 #ifndef CONTROL_H
 #define CONTROL_H
 
@@ -11,6 +12,8 @@ class Controller
         std::string input;
 	Console* console;
 	Model model;
+	Processor processor;
+	int process_selection;
 
     public:
         ~Controller(){}
@@ -20,7 +23,8 @@ class Controller
 	void run(){
 		model.setFile(console->requestFile());
 		console->printAttributes(model.openFile());
-		//console.printProcessMenu(processor.getProcesslist());
+		process_selection = console->printProcessMenu(processor.getProcessList());
+		
 	}
 };
 

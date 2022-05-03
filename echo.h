@@ -2,9 +2,8 @@
 
 class Echo : public IProcessor
 {
-    private:
-
-    public:
-        Echo(){}
-        ~Echo(){}
-}
+   public:
+	Echo(){}
+	~Echo(){}
+	std::vector<float> process(const std::vector<float> &input);
+};
