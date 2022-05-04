@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include "IProcessor.h"
 #include "echo.h"
 #ifndef PROCESSOR_H
 #define PROCESSOR_H
@@ -17,6 +18,7 @@ public:
 	std::vector<std::string> getProcessList() {
 		return processList;
 	}
+	void run(int selection, int numChannels, const std::vector<float>& input) {}
         Processor(){}
         ~Processor(){}
 

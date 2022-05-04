@@ -24,7 +24,7 @@ class Controller
 		model.setFile(console->requestFile());
 		console->printAttributes(model.openFile());
 		process_selection = console->printProcessMenu(processor.getProcessList());
-		
+		processor.run(process_selection, model.getNumChannels(), model.getSoundData());
 	}
 };
 

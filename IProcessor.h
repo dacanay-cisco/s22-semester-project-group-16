@@ -7,7 +7,7 @@ class IProcessor {
 protected:
 	std::vector<float> output;
 public:
-	virtual std::vector<float> process(const std::vector<float>& input) = 0;
+	virtual std::vector<float> process(const std::vector<float>& input, int numChannels) = 0;
 
 
 };

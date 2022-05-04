@@ -1,5 +1,5 @@
-wave: main.o controller.o model.o console.o wavreader.o wav.o processor.o echo.o
-	g++ main.o controller.o model.o console.o wavreader.o wav.o processor.o echo.o -o wave
+wave: main.o controller.o model.o console.o wavmodel.o wav.o processor.o echo.o
+	g++ main.o controller.o model.o console.o wavmodel.o wav.o processor.o echo.o -o wave
 
 main.o: main.cpp
 	g++ main.cpp -c 
@@ -12,9 +12,8 @@ model.o: model.cpp
 
 console.o: console.cpp
 	g++ console.cpp -c
-
-wav_header.o: wavreader.cpp
-	g++ wavreader.cpp -c
+wavmodel.o: wavmodel.cpp
+	g++ wavmodel.cpp -c
 
 wav.o: wav.cpp
 	g++ wav.cpp -c

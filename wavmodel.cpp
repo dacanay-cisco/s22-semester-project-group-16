@@ -1,10 +1,10 @@
-#include "wavreader.h"
+#include "wavmodel.h"
 #define MAX_16BIT 32768
 #define BIT16_OFFSET 0
 #define MAX_8BIT 128
 #define BIT8_OFFSET 1
 
-FileAttributes WavReader::readFile(const std::string &filename)
+FileAttributes WavModel::readFile(const std::string &filename)
 {
 	std::ifstream file(filename, std::ios::binary | std::ios::in);
 	if(file.is_open())
@@ -12,11 +12,11 @@ FileAttributes WavReader::readFile(const std::string &filename)
 		file.read((char*)&waveHeader, sizeof(wav_header));
 		if(waveHeader.bits_per_sample == 8) {
 			unsigned char* buffer = nullptr;
-			WavReader::readData(buffer, &file, MAX_8BIT, BIT8_OFFSET);
+			WavModel::readData(buffer, &file, MAX_8BIT, BIT8_OFFSET);
 		}
 		else if(waveHeader.bits_per_sample == 16) {
 			short* buffer = nullptr;
-			WavReader::readData(buffer, &file, MAX_16BIT, BIT16_OFFSET);
+			WavModel::readData(buffer, &file, MAX_16BIT, BIT16_OFFSET);
 		}
 		else
 			attributes.error_code = 2; //bit depth not supported
@@ -38,7 +38,7 @@ FileAttributes WavReader::readFile(const std::string &filename)
 }
 
 template<typename T>
-void WavReader::readData(T* buffer, std::ifstream* file, int max_bit, float offset) {
+void WavModel::readData(T* buffer, std::ifstream* file, int max_bit, float offset) {
 	buffer = new T[waveHeader.data_bytes];
 	file->read((char*)buffer, waveHeader.data_bytes);
 
@@ -46,6 +46,5 @@ void WavReader::readData(T* buffer, std::ifstream* file, int max_bit, float offs
 		soundData.push_back((float)buffer[i] / max_bit - offset);
 		//std::cout << soundData[i] << " ";
 	}
-
 	delete[] buffer;
 }
