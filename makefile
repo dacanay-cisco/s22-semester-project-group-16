@@ -1,14 +1,11 @@
-wave: main.o controller.o model.o console.o wavmodel.o wav.o processor.o echo.o
-	g++ main.o controller.o model.o console.o wavmodel.o wav.o processor.o echo.o -o wave
+wave: main.o controller.o console.o wavmodel.o wav.o processor.o echo.o
+	g++ main.o controller.o console.o wavmodel.o wav.o processor.o echo.o -o wave
 
 main.o: main.cpp
 	g++ main.cpp -c 
 
 controller.o: controller.cpp
 	g++ controller.cpp -c 
-
-model.o: model.cpp
-	g++ model.cpp -c
 
 console.o: console.cpp
 	g++ console.cpp -c

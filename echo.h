@@ -5,5 +5,5 @@ class Echo : public IProcessor
    public:
 	Echo(){}
 	~Echo(){}
-	std::vector<float> process(const std::vector<float>& input, int numChannels);
+	void process(const std::vector<float>& input, int numChannels, std::vector<float>& output);
 };

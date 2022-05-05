@@ -4,7 +4,7 @@
 #define MAX_8BIT 128
 #define BIT8_OFFSET 1
 
-FileAttributes WavModel::readFile(const std::string &filename)
+FileAttributes WavModel::readFile()
 {
 	std::ifstream file(filename, std::ios::binary | std::ios::in);
 	if(file.is_open())

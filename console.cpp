@@ -37,8 +37,15 @@ int Console::printProcessMenu(std::vector<std::string> processList) {
 	int selection = 0;
 	std::cout << "Please enter a process number: ";
 	std::cin >> selection;
-
+	std::cin.ignore();
 	return selection;
 
 }
 
+std::string Console::requestOutputName() {
+	std::string output;
+	std::cout << "Please enter a file name for the processed file: ";
+	getline(std::cin, output);
+
+	return output;
+}

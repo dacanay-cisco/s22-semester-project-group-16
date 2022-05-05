@@ -8,6 +8,7 @@
 class Processor {
 private:
         std::vector<float> input;
+        std::vector<float> output;
         float gain;
         int delay;
 	//std::vector<IProcessor*> processes;
@@ -18,7 +19,11 @@ public:
 	std::vector<std::string> getProcessList() {
 		return processList;
 	}
-	void run(int selection, int numChannels, const std::vector<float>& input) {}
+	void run(int selection, int numChannels, const std::vector<float>& input);
+	std::vector<float> getOutput() {
+		return output;
+	}
+	
         Processor(){}
         ~Processor(){}
 

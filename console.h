@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "model.h"
+#include "wavmodel.h"
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
@@ -12,7 +12,7 @@ public:
 	std::string requestFile();
 	void printAttributes(FileAttributes attributes);
 	int printProcessMenu(std::vector<std::string> processList);
-
+	std::string requestOutputName();
 };
 
 

@@ -1,7 +1,7 @@
 #include <iostream>
 #include "controller.h"
 #include "console.h"
-#include "model.h"
+#include "wavmodel.h"
 
 int main()
 {
@@ -9,7 +9,6 @@ int main()
 	Console console;
 	controller.setUI(&console);
 	controller.run();
-	Echo echo;
 	return 0;
 }
 

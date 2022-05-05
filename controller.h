@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "model.h"
+#include "wavmodel.h"
 #include "console.h"
 #include "processor.h"
 #ifndef CONTROL_H
@@ -9,9 +9,10 @@
 class Controller
 {
     private:
-        std::string input;
+        std::string input_name;
+	std::string output_name;
 	Console* console;
-	Model model;
+	WavModel wavmodel;
 	Processor processor;
 	int process_selection;
 
@@ -21,10 +22,12 @@ class Controller
 		console = s_console;
 	}
 	void run(){
-		model.setFile(console->requestFile());
-		console->printAttributes(model.openFile());
+		wavmodel.setFile(console->requestFile());
+		console->printAttributes(wavmodel.readFile());
 		process_selection = console->printProcessMenu(processor.getProcessList());
-		processor.run(process_selection, model.getNumChannels(), model.getSoundData());
+		wavmodel.setOutputName(console->requestOutputName());
+		processor.run(process_selection, wavmodel.getNumChannels(), wavmodel.getSoundData());
+		//model.writeOutputFile(processor.getOutput());
 	}
 };
 
