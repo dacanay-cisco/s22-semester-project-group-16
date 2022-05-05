@@ -12,10 +12,10 @@ class IWavModel {
 public:
 	virtual FileAttributes readFile() = 0;
 	virtual int getNumChannels() = 0;
-	virtual std::vector<float> getSoundData() = 0;
+	virtual const std::vector<float>& getSoundData() = 0;
 	virtual void setFile(std::string s_filename) = 0;
 	virtual void setOutputName(std::string output) = 0;
-	virtual void writeOutputFile() = 0;
+	virtual void writeOutputFile(const std::vector<float>& outputData) = 0;
 };
 
 

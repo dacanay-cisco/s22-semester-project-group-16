@@ -20,7 +20,7 @@ public:
 		return processList;
 	}
 	void run(int selection, int numChannels, const std::vector<float>& input);
-	std::vector<float> getOutput() {
+	const std::vector<float>& getOutput() {
 		return output;
 	}
 	

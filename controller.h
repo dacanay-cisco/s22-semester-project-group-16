@@ -27,7 +27,7 @@ class Controller
 		process_selection = console->printProcessMenu(processor.getProcessList());
 		wavmodel.setOutputName(console->requestOutputName());
 		processor.run(process_selection, wavmodel.getNumChannels(), wavmodel.getSoundData());
-		//model.writeOutputFile(processor.getOutput());
+		wavmodel.writeOutputFile(processor.getOutput());
 	}
 };
 

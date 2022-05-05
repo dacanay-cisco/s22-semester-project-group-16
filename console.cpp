@@ -44,7 +44,7 @@ int Console::printProcessMenu(std::vector<std::string> processList) {
 
 std::string Console::requestOutputName() {
 	std::string output;
-	std::cout << "Please enter a file name for the processed file: ";
+	std::cout << "Please enter a file name for the processed file (must be .wav format): ";
 	getline(std::cin, output);
 
 	return output;

@@ -1,8 +1,8 @@
 #include "echo.h"
-
+#include <iostream>
 void Echo::process(const std::vector<float> &input, int numChannels, std::vector<float>& output) {
-	float gain = 0.2;
-	int delay = 2;
+	float gain = 0.6;
+	int delay = 7000 * numChannels;
 	auto decay = log(0.001)/log(gain);
 	int new_size = int(input.size() + delay + decay);
 	std::vector<float> extendedInput(new_size, 0.0f);
@@ -20,5 +20,4 @@ void Echo::process(const std::vector<float> &input, int numChannels, std::vector
 			output.push_back(extendedInput[i]);
         	}
     	}
-    	//return output;
 }

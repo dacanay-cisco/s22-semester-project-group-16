@@ -11,13 +11,15 @@ private:
 	FileAttributes attributes;
 	template<typename T>
 	void readData(T* buffer, std::ifstream* file, int max_bit, float offset);
+	template<typename T2>
+	void convertOutputData(const std::vector<float>& outputData, std::ofstream* file, wav_header outputHeader, int offset, int max_bit); 
 
 public:
 	FileAttributes readFile();
 	int getNumChannels() {
 		return attributes.num_channels;
 	}
-	std::vector<float> getSoundData() {
+	const std::vector<float>& getSoundData() {
 		return soundData;
 	}
 	
@@ -27,7 +29,7 @@ public:
 	void setOutputName(std::string output) {
 		output_name = output;
 	}
-	void writeOutputFile() {}
+	void writeOutputFile(const std::vector<float>& outputData);
 };
 
 

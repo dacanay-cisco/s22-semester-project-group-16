@@ -1,7 +1,6 @@
 #include "processor.h"
 
 void Processor::run(int selection, int numChannels, const std::vector<float>& input) {
-	//std::vector<float> output;
 	switch(selection) {
 		case 1:
 			echo.process(input, numChannels, output);
@@ -17,5 +16,4 @@ void Processor::run(int selection, int numChannels, const std::vector<float>& in
 			break;
 	}
 	
-	//return output;
 }
