@@ -12,7 +12,7 @@ void Processor::run(int selection, int numChannels, const std::vector<float>& in
 			//reverse.process(input, numChannels);
 			break;
 		case 4:
-			//low_pass.process(input, numChannels);
+			low_pass.process(input, numChannels, output);
 			break;
 	}
 	

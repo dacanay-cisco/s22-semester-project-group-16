@@ -22,7 +22,7 @@ FileAttributes WavModel::readFile()
 		}
 		else
 			attributes.error_code = 2; //bit depth not supported
-
+		
 		file.close();
 		attributes.filename = filename;
 		attributes.sample_rate = waveHeader.sample_rate;
@@ -40,34 +40,30 @@ FileAttributes WavModel::readFile()
 template<typename T>
 void WavModel::readData(T* buffer, std::ifstream* file, int max_bit, float offset) {
 	buffer = new T[waveHeader.data_bytes];
-	file->read((char*)buffer, waveHeader.data_bytes);
+	file->read((char*)buffer, waveHeader.data_bytes / waveHeader.sample_alignment);
 
-	for (int i=0; i < waveHeader.data_bytes / waveHeader.sample_alignment; i++) {
+	for (int i=0; i < waveHeader.data_bytes; i++) {
 		soundData.push_back((float)buffer[i] / max_bit - offset);
-		//std::cout << soundData[i] << " ";
 	}
-	//std::cout << soundData.size() << std::endl;
-	std::cout << waveHeader.sample_alignment << std::endl;
 	delete[] buffer;
 }
 
 template<typename T2>
 void WavModel::convertOutputData(const std::vector<float>& outputData, std::ofstream* file, wav_header outputHeader, int offset, int max_bit) {
-	T2 convertedData[outputHeader.data_bytes];
-	for (int i=0; i < outputHeader.data_bytes / outputHeader.sample_alignment; i++) {
-		convertedData[i] = (T2)((outputData[i] + offset) * max_bit);
+	T2 *buffer = new T2[outputHeader.data_bytes];
+	for (int i=0; i < outputHeader.data_bytes / waveHeader.sample_alignment; i++) {
+		buffer[i] = (T2)((outputData[i] + offset) * max_bit);
 	}
 	for(int d=0; d < outputHeader.data_bytes; d++) {
-		file->write((char*)&convertedData[d], sizeof(convertedData[d]));
-		//std::cout << sizeof(convertedData[d]) << " ";
+		file->write((char*)&buffer[d], 1);
+
 	}
-	//std::cout << outputHeader.data_bytes << std::endl;
+	delete[] buffer;
 }
 
 void WavModel::writeOutputFile(const std::vector<float>& outputData) {
 	wav_header outputHeader = waveHeader;
 	outputHeader.data_bytes = outputData.size();
-
 	std::ofstream file(output_name, std::ios::binary | std::ios::out);
 
 	file.write((char*)&outputHeader, sizeof(wav_header));
@@ -81,5 +77,5 @@ void WavModel::writeOutputFile(const std::vector<float>& outputData) {
 	
 	
 	file.close();
-
+	success = true;
 }

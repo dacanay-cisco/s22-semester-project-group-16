@@ -13,6 +13,10 @@ public:
 	void printAttributes(FileAttributes attributes);
 	int printProcessMenu(std::vector<std::string> processList);
 	std::string requestOutputName();
+	void returnSuccess(bool success) {
+		if(success)
+			std::cout << "File successfully processed" << std::endl;
+	}
 };
 
 

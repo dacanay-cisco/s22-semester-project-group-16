@@ -1,5 +1,5 @@
-wave: main.o controller.o console.o wavmodel.o wav.o processor.o echo.o
-	g++ main.o controller.o console.o wavmodel.o wav.o processor.o echo.o -o wave
+wave: main.o controller.o console.o wavmodel.o wav.o processor.o echo.o lowpass.o
+	g++ main.o controller.o console.o wavmodel.o wav.o processor.o echo.o lowpass.o -o wave
 
 main.o: main.cpp
 	g++ main.cpp -c 
@@ -20,6 +20,9 @@ processor.o: processor.cpp
 
 echo.o: echo.cpp
 	g++ echo.cpp -c
+
+lowpass.o: lowpass.cpp
+	g++ lowpass.cpp -c
 
 clean:
 	rm -f *.o wave

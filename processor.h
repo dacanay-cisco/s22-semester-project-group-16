@@ -2,6 +2,7 @@
 #include <vector>
 #include "IProcessor.h"
 #include "echo.h"
+#include "lowpass.h"
 #ifndef PROCESSOR_H
 #define PROCESSOR_H
 
@@ -13,6 +14,7 @@ private:
         int delay;
 	//std::vector<IProcessor*> processes;
 	Echo echo;
+	LowPass low_pass;
 	std::vector<std::string> processList{ "Echo","Normalize","Reverse","Low Pass" };
 
 public:

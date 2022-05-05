@@ -15,6 +15,7 @@ private:
 	void convertOutputData(const std::vector<float>& outputData, std::ofstream* file, wav_header outputHeader, int offset, int max_bit); 
 
 public:
+	bool success = false;
 	FileAttributes readFile();
 	int getNumChannels() {
 		return attributes.num_channels;
@@ -23,6 +24,10 @@ public:
 		return soundData;
 	}
 	
+	int getErrorCode() {
+		return attributes.error_code;
+	}
+
 	void setFile(std::string s_filename) {
 		filename = s_filename;
 	}
