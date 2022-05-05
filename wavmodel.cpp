@@ -50,20 +50,19 @@ void WavModel::readData(T* buffer, std::ifstream* file, int max_bit, float offse
 
 template<typename T2>
 void WavModel::convertOutputData(const std::vector<float>& outputData, std::ofstream* file, wav_header outputHeader, int offset, int max_bit) {
-	T2 *buffer = new T2[outputHeader.data_bytes];
+	auto* buffer = new T2[outputHeader.data_bytes];
 	for (int i=0; i < outputHeader.data_bytes / waveHeader.sample_alignment; i++) {
 		buffer[i] = (T2)((outputData[i] + offset) * max_bit);
 	}
-	for(int d=0; d < outputHeader.data_bytes; d++) {
-		file->write((char*)&buffer[d], 1);
+	file->write((char*)buffer, outputHeader.data_bytes);
 
-	}
 	delete[] buffer;
 }
 
 void WavModel::writeOutputFile(const std::vector<float>& outputData) {
 	wav_header outputHeader = waveHeader;
 	outputHeader.data_bytes = outputData.size();
+	outputHeader.wav_size = waveHeader.wav_size - waveHeader.data_bytes + outputHeader.data_bytes;
 	std::ofstream file(output_name, std::ios::binary | std::ios::out);
 
 	file.write((char*)&outputHeader, sizeof(wav_header));

@@ -1,8 +1,10 @@
-#include <iostream>
 #include <vector>
-#include "IProcessor.h"
+#include <string>
 #include "echo.h"
 #include "lowpass.h"
+#include "normalize.h"
+#include "reverse.h"
+
 #ifndef PROCESSOR_H
 #define PROCESSOR_H
 
@@ -12,9 +14,12 @@ private:
         std::vector<float> output;
         float gain;
         int delay;
-	//std::vector<IProcessor*> processes;
+
 	Echo echo;
+	Normalize normalize;
+	Reverse reverse;
 	LowPass low_pass;
+
 	std::vector<std::string> processList{ "Echo","Normalize","Reverse","Low Pass" };
 
 public:

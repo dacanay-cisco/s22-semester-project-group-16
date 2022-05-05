@@ -6,10 +6,10 @@ void Processor::run(int selection, int numChannels, const std::vector<float>& in
 			echo.process(input, numChannels, output);
 			break;
 		case 2:
-			//normalize.process(input, numChannels);
+			normalize.process(input, numChannels, output);
 			break;
 		case 3:
-			//reverse.process(input, numChannels);
+			reverse.process(input, numChannels, output);
 			break;
 		case 4:
 			low_pass.process(input, numChannels, output);

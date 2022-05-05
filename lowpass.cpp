@@ -1,5 +1,5 @@
 #include "lowpass.h"
-#include <iostream>
+
 void LowPass::process(const std::vector<float> &input, int numChannels, std::vector<float>& output) {
 	float gain = 1;
 	int delay = 2 * numChannels;

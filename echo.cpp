@@ -1,6 +1,6 @@
 #include "echo.h"
-#include <iostream>
-void Echo::process(const std::vector<float> &input, int numChannels, std::vector<float>& output) {
+
+void Echo::process(const std::vector<float>& input, int numChannels, std::vector<float>& output) {
 	float gain = 0.6;
 	int delay = 7000 * numChannels;
 	auto decay = log(0.001)/log(gain);

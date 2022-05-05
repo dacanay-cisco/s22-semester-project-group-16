@@ -1,4 +1,3 @@
-#include <iostream>
 #include "controller.h"
 #include "console.h"
 #include "wavmodel.h"

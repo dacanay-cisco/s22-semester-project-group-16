@@ -1,10 +1,9 @@
-#include <iostream>
 #include <string>
 #include "wavmodel.h"
 #include "console.h"
 #include "processor.h"
-#ifndef CONTROL_H
-#define CONTROL_H
+#ifndef CONTROLLER_H
+#define CONTROLLER_H
 
 class Controller
 {
@@ -21,17 +20,7 @@ class Controller
 	void setUI(Console* s_console) {
 		console = s_console;
 	}
-	void run(){
-		wavmodel.setFile(console->requestFile());
-		console->printAttributes(wavmodel.readFile());
-		if(wavmodel.getErrorCode() == 0) {
-			process_selection = console->printProcessMenu(processor.getProcessList());
-			wavmodel.setOutputName(console->requestOutputName());
-			processor.run(process_selection, wavmodel.getNumChannels(), wavmodel.getSoundData());
-			wavmodel.writeOutputFile(processor.getOutput());
-			console->returnSuccess(wavmodel.success);
-		}
-	}
+	void run();
 };
 
-#endif //CONTROL_H
+#endif //CONTROLLER_H
