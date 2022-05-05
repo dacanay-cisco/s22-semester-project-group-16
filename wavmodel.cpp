@@ -38,9 +38,9 @@ FileAttributes WavModel::readFile()
 }
 
 template<typename T>
-void WavModel::readData(T* buffer, std::ifstream* file, int max_bit, float offset) {
+void WavModel::readData(T* buffer, std::ifstream* file, int max_bit, int offset) {
 	buffer = new T[waveHeader.data_bytes];
-	file->read((char*)buffer, waveHeader.data_bytes / waveHeader.sample_alignment);
+	file->read((char*)buffer, waveHeader.data_bytes); //file gets cut off if  / waveHeader.sample_alignment
 
 	for (int i=0; i < waveHeader.data_bytes; i++) {
 		soundData.push_back((float)buffer[i] / max_bit - offset);
@@ -48,16 +48,6 @@ void WavModel::readData(T* buffer, std::ifstream* file, int max_bit, float offse
 	delete[] buffer;
 }
 
-template<typename T2>
-void WavModel::convertOutputData(const std::vector<float>& outputData, std::ofstream* file, wav_header outputHeader, int offset, int max_bit) {
-	auto* buffer = new T2[outputHeader.data_bytes];
-	for (int i=0; i < outputHeader.data_bytes / waveHeader.sample_alignment; i++) {
-		buffer[i] = (T2)((outputData[i] + offset) * max_bit);
-	}
-	file->write((char*)buffer, outputHeader.data_bytes);
-
-	delete[] buffer;
-}
 
 void WavModel::writeOutputFile(const std::vector<float>& outputData) {
 	wav_header outputHeader = waveHeader;
@@ -77,4 +67,16 @@ void WavModel::writeOutputFile(const std::vector<float>& outputData) {
 	
 	file.close();
 	success = true;
+}
+
+
+template<typename T2>
+void WavModel::convertOutputData(const std::vector<float>& outputData, std::ofstream* file, wav_header outputHeader, int offset, int max_bit) {
+	auto* buffer = new T2[outputHeader.data_bytes];
+	for (int i=0; i < outputHeader.data_bytes; i++) {
+		buffer[i] = (T2)((outputData[i] + offset) * max_bit);
+	}
+	file->write((char*)buffer, outputHeader.data_bytes);
+
+	delete[] buffer;
 }

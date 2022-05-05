@@ -10,7 +10,7 @@ private:
 	std::vector<float> soundData;
 	FileAttributes attributes;
 	template<typename T>
-	void readData(T* buffer, std::ifstream* file, int max_bit, float offset);
+	void readData(T* buffer, std::ifstream* file, int max_bit, int offset);
 	template<typename T2>
 	void convertOutputData(const std::vector<float>& outputData, std::ofstream* file, wav_header outputHeader, int offset, int max_bit); 
 
