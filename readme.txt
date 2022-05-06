@@ -7,4 +7,4 @@ What works:
 	- Reverse (8 bit, mono/stereo)
 
 What doesn't work:
-	- Reverse when working with 16 bit files, 8 bit mono and stereo work fine.
+	- Reverse when working with 16 bit files
